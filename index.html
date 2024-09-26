@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function myFunc() {
+        let msg = true;
+        return new Promise((resolve, reject) => {
+          if (msg) {
+            resolve("its true");
+            // return "its true"
+          } else {
+            reject("its rejected");
+          }
+        });
+      }
+
+      // console.log(myFunc())
+      myFunc()
+        .then((data) => console.log(data))
+        .catch((e) => {
+          console.log(e.message);
+        })
+        .finally(() => {
+          console.log("its done");
+        });
+      fetch("https://fakestoreapi.com/products?limit=5")
+        .then((data) => data.json())
+        .then((json) => {
+          console.log(json);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+      // console.log(products)
+    </script>
+  </body>
+</html>

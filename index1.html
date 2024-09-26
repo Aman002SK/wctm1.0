@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            background-color: #eeee;
+            justify-content: space-around;
+        }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+</head>
+<body>
+
+      <div class="container">
+        <div class="left">
+            <form id="form">
+                <textarea name="post" id="input" rows="5" cols="10"></textarea>
+            <button type="submit">Post</button>
+            <div id="msg"></div>
+            </form>
+        </div>
+            <div class="right">
+                <div id="posts">
+                    <div>post1
+                        <span> <i class="fas fa-edit"></i></span>
+                        <span> <i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    <div>post2
+                        <span> <i class="fas fa-edit"></i></span>
+                        <span> <i class="fas fa-trash-alt"></i></span>
+    
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <script>
+            let form = document.getElementById('form')
+            let posts = document.getElementById('posts')
+            
+
+            let msg = document.getElementById('msg')
+
+            let data ={}
+            console.log(input.value)
+            // form.onsubmit= function(){
+
+            // }
+            
+
+            form.addEventListener('submit', (event)=>{
+                event.preventDefault()
+                let input = document.getElementById('input')
+                data["text"] = input.value
+                if(input.value===""){
+                    msg.innerHTML = "Post can't be empty"
+                }
+                else{
+                    createPost()
+                }
+                input.value = ""
+            })
+
+            let createPost = ()=>{
+                posts.innerHTML +=`<div>${data.text}
+                    <span> <i class="fas fa-edit" onclick="editPost(this)"></i></span>
+                    <i class="fas fa-trash-alt" onclick="deletePost(this)"></i>
+                    <div>`
+            }
+
+            let deletePost=(e)=>{
+                e.parentElement.remove()
+            }
+
+            let editPost =(e)=>{
+                // console.log(e.parentElement.parentElement)
+                input.value = e.parentElement.parentElement.innerHTML[0];
+                // console.log(input.value)
+                
+                e.parentElement.parentElement.remove();
+            };
+
+            
+
+
+        </script>
+     
+</body>
+</html>
